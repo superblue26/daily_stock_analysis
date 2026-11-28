@@ -1,6 +1,7 @@
 import os
 import re
 import json
+import shutil
 import asyncio
 import datetime
 from pathlib import Path
@@ -49,6 +50,15 @@ posts_dir = docs_dir / "posts"
 podcast_dir = docs_dir / "podcast"
 posts_dir.mkdir(parents=True, exist_ok=True)
 podcast_dir.mkdir(parents=True, exist_ok=True)
+
+# 同步仓库根目录的 cover.jpg 到 docs/podcast/cover.jpg，确保随 GitHub Pages 一并发布
+root_cover = Path("cover.jpg")
+podcast_cover = podcast_dir / "cover.jpg"
+if root_cover.exists():
+    shutil.copy2(root_cover, podcast_cover)
+    print(f"✅ 已同步播客封面至 {podcast_cover}")
+else:
+    print("⚠️ 未在仓库根目录找到 cover.jpg，RSS 仍将引用封面 URL")
 
 post_slug = f"{today_str}-{session_tag}"
 daily_post_path = posts_dir / f"{post_slug}.md"
@@ -162,6 +172,7 @@ repo_owner, repo_name = os.getenv("GITHUB_REPOSITORY", "superblue26/daily_stock_
 base_url_pages = f"https://{repo_owner.lower()}.github.io/{repo_name}"
 podcast_base = f"{base_url_pages}/podcast"
 audio_url = f"{podcast_base}/{mp3_filename}"
+cover_url = f"{podcast_base}/cover.jpg"
 
 mp3_files = sorted(podcast_dir.glob("dsa-*.mp3"), reverse=True)[:40]
 items_xml = []
@@ -197,6 +208,12 @@ rss_xml = f"""<?xml version="1.0" encoding="UTF-8"?>
     <language>zh-cn</language>
     <itunes:author>DSA Research</itunes:author>
     <itunes:explicit>false</itunes:explicit>
+    <itunes:image href="{cover_url}" />
+    <image>
+      <url>{cover_url}</url>
+      <title>DSA 每日投研 · 收盘与盘前双播</title>
+      <link>{podcast_base}/podcast.xml</link>
+    </image>
 {chr(10).join(items_xml)}
   </channel>
 </rss>
