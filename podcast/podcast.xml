@@ -8,11 +8,11 @@
     <itunes:author>DSA Research</itunes:author>
     <itunes:explicit>false</itunes:explicit>
     <item>
-      <title>DSA 盘前新闻 - 2026-11-27</title>
+      <title>DSA 收盘复盘 - 2026-11-28</title>
       <description>美股宽基、AI 链、马斯克系、港股/QDII 中长线复盘与盘前新闻精读。</description>
-      <pubDate>Fri, 27 Nov 2026 21:00:00 +0800</pubDate>
-      <enclosure url="https://superblue26.github.io/daily_stock_analysis/podcast/dsa-2026-11-27-premarket.mp3" length="2134944" type="audio/mpeg" />
-      <guid>https://superblue26.github.io/daily_stock_analysis/podcast/dsa-2026-11-27-premarket.mp3</guid>
+      <pubDate>Sat, 28 Nov 2026 05:00:00 +0800</pubDate>
+      <enclosure url="https://superblue26.github.io/daily_stock_analysis/podcast/dsa-2026-11-28-close.mp3" length="2115072" type="audio/mpeg" />
+      <guid>https://superblue26.github.io/daily_stock_analysis/podcast/dsa-2026-11-28-close.mp3</guid>
     </item>
   </channel>
 </rss>
